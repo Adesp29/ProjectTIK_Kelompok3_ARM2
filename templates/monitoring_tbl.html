@@ -1,0 +1,71 @@
+{% extends 'layout.html' %} {% block title %} MonitoringAdmin {% endblock %} {% block content %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!--<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+-->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="static/js/script.js"></script>
+<style>
+  body {
+    background-color: #a4a4a4;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23454545' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%23676767' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%23606060' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%23636363' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%237d7d7d' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%235f5f5f' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%239a9a9a' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%235b5b5b' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%23b9b9b9' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%23575757' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%23d9d9d9' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%23535353' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+  }
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="">
+      {% block body %}
+      <div class="container">
+        <div class="starter-template">
+          <h1>Data Turbin Control Monitoring</h1>
+          <tr>
+            <button type="button" class="btn btn-primary btn-lg" disabled>Hasil Monitoring</button>
+            <label><h6>BUTTON CONTROL :</h6></label>
+            <a href="/start" class="btn btn-success btn-xs" onclick="return confirm('Start Operasi Turbin?')">Start Turbin</a>
+            <a href="/temperatur" class="btn btn-secondary btn-xs" onclick="return confirm('ingin monitoring temperatur saja ?')">Temperatur monitoring</a>
+            <a href="/pressure" class="btn btn-dark btn-xs" onclick="return confirm('ingin monitoring pressure saja ?')">Pressure Monitoring</a>
+            <a href="/stop" class="btn btn-danger btn-xs" onclick="return confirm('Stop Operasi Turbin?')">Stop Turbin !</a>
+            <a href="/clearlog" class="btn btn-warning btn-xs" onclick="return confirm('Hapus Operasi?')">Emergency Stop !</a>
+          </tr>
+          <table class="table table-bordered table-secondary table-striped text-center fs-1 col-md-12 rows-md-4">
+            <thead>
+              <tr>
+                <td>Id</td>
+
+                <td>datetime</td>
+                <td>temperature inlet</td>
+                <td>temperature outlet</td>
+                <td>pressure inlet</td>
+                <td>pressure outlet</td>
+                <td>status</td>
+              </tr>
+            </thead>
+
+            <tbody id="myturbin">
+              <tr>
+                <td>{{"Loading Please wait !"}}</td>
+                <td>{{ "Loading Please wait !" }}</td>
+                <td>{{ "Loading Please wait !" }}</td>
+                <td>{{ "Loading Please wait !" }}</td>
+                <td>{{ "Loading Please wait !" }}</td>
+                <td>{{ "Loading Please wait !" }}</td>
+                <td>{{ "Loading Please wait !" }}</td>
+              </tr>
+
+              <tr>
+                <td colspan="3">Unbelievable. No entries here so far</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- /.container -->
+      {% endblock %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

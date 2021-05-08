@@ -1,0 +1,41 @@
+{% extends 'layout.html' %} {% block title %} Register {% endblock %} {% block content %}
+<title>ADE SURYA PRAMUDYA</title>
+
+<style>
+  body {
+    background-color: #a4a4a4;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23454545' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%23676767' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%23606060' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%23636363' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%237d7d7d' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%235f5f5f' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%239a9a9a' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%235b5b5b' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%23b9b9b9' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%23575757' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%23d9d9d9' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%23535353' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+  }
+</style>
+<div class="container">
+  <div class="row regis">
+    <div class="col-md-6 col-md-offset-3">
+      <form action="/register" method="POST">
+        <div class="form-group">
+          <label>Name:</label>
+
+          <input type="text" class="form-control" name="name" />
+        </div>
+
+        <div class="form-group">
+          <label>Password:</label>
+
+          <input type="password" class="form-control" name="password" />
+        </div>
+        <div class="form-group">
+          <label>Status:</label>
+
+          <input type="text" class="form-control" name="status" />
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-secondary">Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

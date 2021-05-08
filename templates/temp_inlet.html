@@ -1,0 +1,135 @@
+{% extends 'layout.html' %} {% block title %} Home {% endblock %} {% block content %}
+
+<style>
+  body {
+    background-color: #a4a4a4;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23454545' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%23676767' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%23606060' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%23636363' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%237d7d7d' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%235f5f5f' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%239a9a9a' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%235b5b5b' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%23b9b9b9' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%23575757' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%23d9d9d9' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%23535353' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+  }
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="">
+      {% block body %}
+      <div class="container">
+        <!--footer-->
+        <footer class="footer text-white fs-1">
+          <p>For The Latest Info Check Our Instagram <i class="bi bi-instagram text-white"></i> <a href="https://www.intagram.com/adepram06/" class="text-white fw-bold">Ade Surya Pramudya</a></p>
+        </footer>
+        <div class="starter-template">
+          <h1>Data Temperatur Inlet</h1>
+
+          <table class="table table-bordered table-secondary table-striped text-center">
+            <thead>
+              <tr>
+                <td>Id</td>
+
+                <td>datetime</td>
+                <td>temperature</td>
+                <td>status</td>
+              </tr>
+            </thead>
+
+            <tbody>
+              {% for item in temps %}
+
+              <tr>
+                <td>{{item.Id}}</td>
+                <td>{{ item.datetime }}</td>
+                <td>{{ item.temperature }}</td>
+                <td>{{ item.status }}</td>
+                <!-- Modal -->
+
+                <div id="modalEdit{{ item.Id }}" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Edit</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+
+                      <div class="modal-body">
+                        <form action="{{ url_for('updateTemperatur') }}" method="POST">
+                          <div class="form-group">
+                            <label>datetime:</label>
+
+                            <input type="hidden" name="id" value="{{ item.Id }}" />
+
+                            <input type="text" class="form-control" name="datetime" value="{{ item.datetime }}" />
+                            <label>temperature:</label>
+                            <input type="text" class="form-control" name="temperature" value="{{ item.temperature }}" />
+                            <label>status:</label>
+                            <input type="text" class="form-control" name="status" value="{{ item.status }}" />
+                          </div>
+
+                          <div class="form-group">
+                            <button class="btn btn-warning" type="submit">Update</button>
+                          </div>
+                        </form>
+                      </div>
+
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% else %}
+              </tr>
+
+              <tr>
+                <td colspan="3">Unbelievable. No entries here so far</td>
+              </tr>
+
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">New Data</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+              <form action="{{ url_for('saveTemperatur') }}" method="POST">
+                <div class="form-group">
+                  <label>datetime:</label>
+
+                  <input type="text" class="form-control" name="datetime" />
+                  <label>temperature:</label>
+
+                  <input type="text" class="form-control" name="temperature" />
+                  <label>status:</label>
+
+                  <input type="text" class="form-control" name="status" />
+                </div>
+
+                <div class="form-group">
+                  <button class="btn btn-primary" type="sbumit">Apply</button>
+                </div>
+              </form>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- /.container -->
+
+      {% endblock %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
